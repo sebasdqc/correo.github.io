@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultado - Mangone Law Firm</title>
+<style>
+  /* Preview wrapper only - not part of email */
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #E8E5E0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .preview-label {
+    background: #2D2A2E;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* EMAIL CONTAINER */
+  .email-frame {
+    max-width: 600px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  /* HEADER BAND */
+  .email-header {
+    background: linear-gradient(135deg, #2D2A2E 0%, #3D3A3E 100%);
+    padding: 36px 40px;
+    text-align: center;
+  }
+
+  .email-logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .email-logo span { color: #D4952A; }
+
+  .email-logo-sub {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* BODY */
+  .email-body {
+    padding: 40px;
+  }
+
+  .greeting {
+    font-size: 16px;
+    color: #2D2A2E;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .greeting strong {
+    color: #2D2A2E;
+  }
+
+  .intro-text {
+    font-size: 15px;
+    color: #6B6568;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  /* RESULT BADGE */
+  .result-box {
+    text-align: center;
+    padding: 32px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+  }
+
+  .result-box.positive {
+    background: linear-gradient(135deg, #F0FFF4 0%, #E8F8ED 100%);
+    border: 2px solid rgba(39,174,96,0.15);
+  }
+
+  .result-box.negative {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FEF0F0 100%);
+    border: 2px solid rgba(192,57,43,0.12);
+  }
+
+  .result-emoji {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .result-label {
+    display: inline-block;
+    padding: 8px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .result-label.positive {
+    background: rgba(39,174,96,0.15);
+    color: #1E8449;
+  }
+
+  .result-label.negative {
+    background: rgba(192,57,43,0.15);
+    color: #C0392B;
+  }
+
+  .result-text {
+    font-size: 14px;
+    color: #6B6568;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* SUMMARY TABLE */
+  .summary-section {
+    margin-bottom: 32px;
+  }
+
+  .summary-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #D4952A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #F0EBE3;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .summary-table td {
+    padding: 14px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #F5F2ED;
+    vertical-align: top;
+  }
+
+  .summary-table td:first-child {
+    color: #8A8487;
+    width: 160px;
+    font-weight: 500;
+  }
+
+  .summary-table td:last-child {
+    color: #2D2A2E;
+    font-weight: 600;
+  }
+
+  .summary-table tr:last-child td { border-bottom: none; }
+
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .tag-yes { background: #E8F8ED; color: #1E8449; }
+  .tag-no { background: #FEF0F0; color: #C0392B; }
+  .tag-neutral { background: #F5F2ED; color: #6B6568; }
+
+  /* CTA BUTTON */
+  .cta-container {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background: #D4952A;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .cta-note {
+    font-size: 12px;
+    color: #8A8487;
+    margin-top: 10px;
+  }
+
+  /* NEXT STEPS */
+  .next-steps {
+    background: #FBF8F3;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+
+  .next-steps h3 {
+    font-size: 16px;
+    color: #2D2A2E;
+    margin-bottom: 16px;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .step-item:last-child { margin-bottom: 0; }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    background: #D4952A;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content {
+    font-size: 14px;
+    color: #4A4548;
+    line-height: 1.5;
+  }
+
+  .step-content strong { color: #2D2A2E; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    font-size: 11px;
+    color: #8A8487;
+    line-height: 1.6;
+    padding-top: 24px;
+    border-top: 1px solid #F0EBE3;
+    margin-bottom: 0;
+  }
+
+  /* FOOTER */
+  .email-footer {
+    background: #FBF8F3;
+    padding: 28px 40px;
+    text-align: center;
+    border-top: 1px solid #F0EBE3;
+  }
+
+  .footer-brand {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #4A4548;
+    margin-bottom: 8px;
+  }
+
+  .footer-brand span { color: #D4952A; }
+
+  .footer-info {
+    font-size: 12px;
+    color: #8A8487;
+    line-height: 1.8;
+  }
+
+  .footer-info a {
+    color: #D4952A;
+    text-decoration: none;
+  }
+
+  .footer-legal {
+    font-size: 11px;
+    color: #AEA9AC;
+    margin-top: 16px;
+  }
+
+  /* TOGGLE BETWEEN VERSIONS */
+  .toggle-bar {
+    display: flex;
+    gap: 8px;
+  }
+
+  .toggle-btn {
+    padding: 10px 24px;
+    border: 2px solid #2D2A2E;
+    background: transparent;
+    color: #2D2A2E;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toggle-btn.active {
+    background: #2D2A2E;
+    color: white;
+  }
+
+  .email-version { display: none; }
+  .email-version.active { display: block; }
+</style>
+</head>
+<body>
+
+<div class="preview-label">Vista previa del email de resultados</div>
+
+<div class="toggle-bar">
+  <button class="toggle-btn active" onclick="showVersion('positive')">✓ Califica</button>
+  <button class="toggle-btn" onclick="showVersion('negative')">✗ No Califica</button>
+</div>
+
+<!-- ============================================ -->
+<!-- VERSION: POSITIVE / QUALIFIES -->
+<!-- ============================================ -->
+<div class="email-version active" id="version-positive">
+<div class="email-frame">
+
+  <div class="email-header">
+    <div class="email-logo"><span>Mangone</span> Law Firm</div>
+    <div class="email-logo-sub">Abogados de Inmigración</div>
+  </div>
+
+  <div class="email-body">
+    <p class="greeting">Hola <strong>Siboney Brandoni</strong>,</p>
+    <p class="intro-text">Aquí tienes el resultado de tu evaluación migratoria con Mangone Law Firm (guárdalo para tus registros):</p>
+
+    <div class="result-box positive">
+      <div class="result-emoji">✅</div>
+      <div class="result-label positive">Podrías calificar</div>
+      <p class="result-text">Basado en tus respuestas, identificamos posibles opciones de alivio migratorio para tu caso. Un abogado de nuestro equipo te contactará.</p>
+    </div>
+
+    <div class="summary-section">
+      <div class="summary-title">Resumen de tu caso</div>
+      <table class="summary-table">
+        <tr>
+          <td>En EE.UU.</td>
+          <td><span class="tag tag-yes">✓ Sí</span></td>
+        </tr>
+        <tr>
+          <td>Víctima de abuso</td>
+          <td><span class="tag tag-yes">✓ Sí</span></td>
+        </tr>
+        <tr>
+          <td>Estatus migratorio</td>
+          <td>Sin estatus legal</td>
+        </tr>
+        <tr>
+          <td>Reporte policial</td>
+          <td><span class="tag tag-yes">✓ Sí</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="next-steps">
+      <h3>¿Qué sigue?</h3>
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content"><strong>Revisión por un abogado:</strong> Un miembro de nuestro equipo revisará tus respuestas en las próximas 24-48 horas.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content"><strong>Te contactaremos:</strong> Recibirás una llamada o correo para agendar tu consulta gratuita.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content"><strong>Consulta privada:</strong> Discutiremos tu caso en detalle y te explicaremos tus opciones.</div>
+      </div>
+    </div>
+
+    <div class="cta-container">
+      <a href="#" class="cta-button">📞 Agendar consulta ahora</a>
+      <p class="cta-note">Consulta inicial 100% gratuita y confidencial</p>
+    </div>
+
+    <p class="disclaimer">
+      <strong>Aviso legal:</strong> Este resultado es una evaluación preliminar automatizada y no constituye asesoría legal. Cada caso de inmigración es único y requiere una evaluación completa por un abogado licenciado. Los resultados pueden variar. Mangone Law Firm, LLC no garantiza ningún resultado específico.
+    </p>
+  </div>
+
+  <div class="email-footer">
+    <div class="footer-brand"><span>Mangone</span> Law Firm, LLC</div>
+    <div class="footer-info">
+      Abogados de Inmigración<br>
+      <a href="#">www.mangonelawfirm.com</a> · <a href="tel:+1234567890">(123) 456-7890</a><br>
+      <a href="#">Política de privacidad</a> · <a href="#">Darse de baja</a>
+    </div>
+    <p class="footer-legal">Copyright © 2026 Mangone Law Firm, LLC</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ============================================ -->
+<!-- VERSION: NEGATIVE / DOESN'T QUALIFY -->
+<!-- ============================================ -->
+<div class="email-version" id="version-negative">
+<div class="email-frame">
+
+  <div class="email-header">
+    <div class="email-logo"><span>Mangone</span> Law Firm</div>
+    <div class="email-logo-sub">Abogados de Inmigración</div>
+  </div>
+
+  <div class="email-body">
+    <p class="greeting">Hola <strong>Siboney Brandoni</strong>,</p>
+    <p class="intro-text">Aquí tienes el resultado de tu evaluación migratoria con Mangone Law Firm (guárdalo para tus registros):</p>
+
+    <div class="result-box negative">
+      <div class="result-emoji">❌</div>
+      <div class="result-label negative">No califica en este momento</div>
+      <p class="result-text">Basado en tus respuestas, no identificamos una vía clara de alivio migratorio en este momento. Sin embargo, cada caso es único y la situación puede cambiar.</p>
+    </div>
+
+    <div class="summary-section">
+      <div class="summary-title">Resumen de tu caso</div>
+      <table class="summary-table">
+        <tr>
+          <td>En EE.UU.</td>
+          <td><span class="tag tag-no">✗ No</span></td>
+        </tr>
+        <tr>
+          <td>Víctima de abuso</td>
+          <td><span class="tag tag-no">✗ No</span></td>
+        </tr>
+        <tr>
+          <td>Estatus migratorio</td>
+          <td>Visa vencida</td>
+        </tr>
+        <tr>
+          <td>Reporte policial</td>
+          <td><span class="tag tag-neutral">— No aplica</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="next-steps">
+      <h3>No pierdas la esperanza</h3>
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content"><strong>Las leyes cambian:</strong> Las políticas migratorias se actualizan frecuentemente. Lo que hoy no aplica podría aplicar mañana.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content"><strong>Mantente informado:</strong> Síguenos en redes sociales para recibir actualizaciones sobre cambios legales que podrían beneficiarte.</div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content"><strong>Consulta personalizada:</strong> Si tu situación cambia, puedes volver a evaluarte o contactarnos directamente.</div>
+      </div>
+    </div>
+
+    <div class="cta-container">
+      <a href="#" class="cta-button">📧 Mantenerme informado</a>
+      <p class="cta-note">Recibe alertas sobre cambios migratorios relevantes</p>
+    </div>
+
+    <p class="disclaimer">
+      <strong>Aviso legal:</strong> Este resultado es una evaluación preliminar automatizada y no constituye asesoría legal. Cada caso de inmigración es único y requiere una evaluación completa por un abogado licenciado. Los resultados pueden variar. Mangone Law Firm, LLC no garantiza ningún resultado específico.
+    </p>
+  </div>
+
+  <div class="email-footer">
+    <div class="footer-brand"><span>Mangone</span> Law Firm, LLC</div>
+    <div class="footer-info">
+      Abogados de Inmigración<br>
+      <a href="#">www.mangonelawfirm.com</a> · <a href="tel:+1234567890">(123) 456-7890</a><br>
+      <a href="#">Política de privacidad</a> · <a href="#">Darse de baja</a>
+    </div>
+    <p class="footer-legal">Copyright © 2026 Mangone Law Firm, LLC</p>
+  </div>
+
+</div>
+</div>
+
+<script>
+  function showVersion(type) {
+    document.querySelectorAll('.email-version').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('version-' + type).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
